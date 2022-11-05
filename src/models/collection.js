@@ -35,13 +35,12 @@ class collection{
     async deleteRecord(id){
         return await this.model.destroy( { where: {id:id} } );
     }
-    async readWithOrders(Order) {
-        // console.log('dddddd',Order)
-
+    async readAll() {
+       
         try {
-            return await this.model.findAll({ include: [Order] })
+            return await this.model.findAll()
         } catch (e) {
-            console.error('error in reading record and orders for model: ', this.model.name);
+            console.error('error in reading record for model: ', this.model.name);
         }
     }
 
