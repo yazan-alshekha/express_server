@@ -11,5 +11,6 @@ router.get('/sead',saveCountriesToDB);
 
 router.get('/countries', getAllCountriesHandler);
 
+// router.get('/');
 
 module.exports = router ;

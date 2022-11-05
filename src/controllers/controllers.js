@@ -93,13 +93,30 @@ async function saveCountriesToDB(req,res){
         countries.createRecord(obj);
 
     });
-    
+
     res.send("seed successfully ");
 
 }
 
 async function getAllCountriesHandler(req,res){
-   let result = await countries.readAll();
+    let {cca2 , cca3 , ccn3 , name}=req.query;
+    // console.log(cca2 , cca3 , ccn3);
+   let result;
+    if (cca2){
+        result = await countries.readRecord('cca2',cca2);
+    }
+    else if(cca3) {
+        result = await countries.readRecord('cca3',cca3);
+    }
+    else if(ccn3) {
+        result = await countries.readRecord('ccn3',ccn3);
+    }
+    else if(name) {
+        result = await countries.readRecord('name',name);
+    }
+    else{
+        result = await countries.readRecord();
+    }
     res.json(result);
 }
 

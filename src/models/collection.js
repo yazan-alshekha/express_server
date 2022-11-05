@@ -15,10 +15,10 @@ class collection{
         }
     }
 
-    async readRecord(id) {
+    async readRecord(condition,id) {
         try {
-            if (id) {
-                return await this.model.findOne({ where: { id: id } })
+            if (condition) {
+                return await this.model.findOne({ where: { [condition]: id } })
             } else {
                 return await this.model.findAll();
             }
@@ -43,6 +43,7 @@ class collection{
             console.error('error in reading record for model: ', this.model.name);
         }
     }
+   
 
 
 }
