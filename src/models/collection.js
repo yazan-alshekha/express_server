@@ -1,21 +1,21 @@
 "use strict";
 
-class collection{
-    constructor(model){
-        this.model=model
+class collection {
+    constructor(model) {
+        this.model = model
     }
 
-    async createRecord(obj){
-        try{
+    async createRecord(obj) {
+        try {
             return await this.model.create(obj);
-            
+
         }
-        catch{
+        catch {
             console.error('error in creating a new record for model: ', this.model.name);
         }
     }
 
-    async readRecord(condition,id) {
+    async readRecord(condition, id) {
         try {
             if (condition) {
                 return await this.model.findOne({ where: { [condition]: id } })
@@ -26,25 +26,15 @@ class collection{
             console.error('error in reading record(s) for model: ', this.model.name);
         }
     }
-
-    async updateRecord(updatedData , id){
-        return await this.model.update( updatedData , {where:{id : id}} );
-
-    }
-
-    async deleteRecord(id){
-        return await this.model.destroy( { where: {id:id} } );
-    }
-    async readAll() {
-       
+    async getCurrenciesByCca2(cca2Value  ) {
         try {
-            return await this.model.findAll()
+                return await this.model.findOne({ where: { cca2: cca2Value } , attributes: ['currencies'] })
+                // return await this.model.findOne( { attributes: ['currencies'] } )
+
         } catch (e) {
-            console.error('error in reading record for model: ', this.model.name);
+            console.error('error in reading record(s) for model: ', this.model.name);
         }
     }
-   
-
 
 }
 

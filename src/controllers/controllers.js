@@ -120,9 +120,16 @@ async function getAllCountriesHandler(req,res){
     res.json(result);
 }
 
-
+async function countryCurrenciesHandler(req,res){
+    let {cca2} = req.query;
+    // result = await countries.getCurrenciesByCca2('cca2',cca2);
+    let  result = await countries.getCurrenciesByCca2(cca2)
+    console.log(result);
+    res.json(result);
+}
 
 module.exports={
     getAllCountriesHandler ,
     saveCountriesToDB,
+    countryCurrenciesHandler,
 }
