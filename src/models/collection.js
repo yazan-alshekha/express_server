@@ -15,10 +15,10 @@ class collection {
         }
     }
 
-    async readRecord(condition, id) {
+    async readRecord(condition, conditionValue) {
         try {
             if (condition) {
-                return await this.model.findOne({ where: { [condition]: id } })
+                return await this.model.findOne({ where: { [condition]: conditionValue } });
             } else {
                 return await this.model.findAll();
             }
@@ -28,13 +28,21 @@ class collection {
     }
     async getCurrenciesByCca2(cca2Value  ) {
         try {
-                return await this.model.findOne({ where: { cca2: cca2Value } , attributes: ['currencies'] })
-                // return await this.model.findOne( { attributes: ['currencies'] } )
+                return await this.model.findOne({ where: { cca2: cca2Value } , attributes: ['currencies'] });
 
         } catch (e) {
             console.error('error in reading record(s) for model: ', this.model.name);
         }
     }
+
+    async groupCountries( condition , conditionValue ) {
+        try {
+                return await this.model.findAll({ where: { [condition]: conditionValue }  });
+        } catch (e) {
+            console.error('error in reading record(s) for model: ', this.model.name);
+        }
+    }
+
 
 }
 
