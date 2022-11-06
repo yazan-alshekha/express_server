@@ -22,8 +22,6 @@ function countriesLanguageHelper(countriesData, language) {
 
 
 function writeFileHelper(data ){
-// console.log(prettier.format(JSON.stringify(data)) );
-console.log(data);
 
 let content = prettier.format( JSON.stringify(data) , { semi: false, parser: "json" } ); 
 fs.writeFile('countries.json', content, err => {
